@@ -1,6 +1,6 @@
 $(document).ready(function() {
-  var w = 500,
-      h = 320;
+  var w = 600,
+      h = 600;
 
   var vis = d3.select("#vis").append("svg")
     .attr("id", "svg-vis")
@@ -11,20 +11,29 @@ $(document).ready(function() {
     vis.selectAll("circle")
     .data(csv).enter()
     .append("circle")
-    .attr("r",function(d) { return d.x * 3; })
+    .attr("r",function(d) { return d.r * 3; })
     .attr("cy", function(d) { return (d.y+1) * 3; })
     .attr("cx", function(d,i) { return (i + 1) * 40; })
-    .on("mouseover", show_details)
-    .on("mouseout", hide_details);
-
+    .attr("title", function(d) { return "Im a circle! " + d.x; })
+    .attr("fill", "steelblue")
+    .call(d3.behavior.drag().on("drag", move).on("dragstart", dragstart).on("dragend", dragend));
   }
 
-  show_details = function(data) {
-    console.log(d3.event);
-  }
+  function dragstart() {
+    d3.select(this).attr("fill", "red");
+  };
 
-  hide_details = function(data) {
-  }
+  function dragend() {
+    d3.select(this).attr("fill", "steelblue");
+  };
+
+
+  function move() {
+    var dragTarget = d3.select(this);
+    dragTarget
+      .attr("cx", function(){return d3.event.dx + parseInt(dragTarget.attr("cx"))})
+      .attr("cy", function(){return d3.event.dy + parseInt(dragTarget.attr("cy"))});
+  };
 
   d3.csv("data/test.csv", render_vis);
 });

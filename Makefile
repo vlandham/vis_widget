@@ -14,4 +14,4 @@ all: clean
 	mv ../$(WIDGET_NAME) ./$(WIDGET_NAME)
 
 clean:
-	rm -r ./$(WIDGET_NAME)
+	rm -rf ./$(WIDGET_NAME)

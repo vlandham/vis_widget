@@ -18,11 +18,11 @@
 	<integer>13</integer>
 	<key>CloseBoxInsetY</key>
 	<integer>13</integer>
-	<key>Height</key>
-	<integer>320</integer>
 	<key>MainHTML</key>
 	<string>index.html</string>
+	<key>Height</key>
+	<integer>600</integer>
 	<key>Width</key>
-	<integer>500</integer>
+	<integer>600</integer>
 </dict>
 </plist>
